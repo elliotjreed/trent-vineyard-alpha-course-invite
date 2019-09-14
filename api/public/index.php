@@ -4,6 +4,11 @@ declare(strict_types=1);
 use ElliotJReed\Exception\Form;
 use ElliotJReed\ProcessForm;
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    \header("Location: https://trentvineyard.elliotjreed.com");
+    exit();
+}
+
 \header('Content-Type: application/json');
 
 require __DIR__ . '/../vendor/autoload.php';

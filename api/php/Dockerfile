@@ -9,6 +9,8 @@ COPY ./src /var/www/html/src
 COPY ./composer.json /var/www/html/composer.json
 COPY ./composer.lock /var/www/html/composer.lock
 
+COPY ./php/php.ini /usr/local/etc/php/conf.d/99-overrides.ini
+
 RUN apk add --update --no-cache git && \
     { find /usr/local/lib -type f -print0 | xargs -0r strip --strip-all -p 2>/dev/null || true; } && \
     rm -rf /tmp/* /usr/local/lib/php/doc/* /var/cache/apk/* && \

@@ -8,7 +8,7 @@ services:
     networks:
       - trentvineyard
     volumes:
-      - ./invitations.sqlite3:/usr/share/nginx/html/invitations.sqlite3:rw
+      - ./invitations.sqlite3:/var/www/html/invitations.sqlite3:rw
 
   trentvineyard-api-nginx:
     image: elliotjreed/trentvineyard-api-nginx
