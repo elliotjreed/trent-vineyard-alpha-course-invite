@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+$body-bg: #e42312;
+$body-color: #f7f7f7;
+
+$font-size-base: 1.2rem;
+
+$font-family-sans-serif: 'Poppins', sans-serif;
+$font-family-base:       $font-family-sans-serif !default;
+
+$enable-rounded: false;
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/utilities/spacing";
+@import "~bootstrap/scss/utilities/text";
