@@ -1,14 +1,24 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+//@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+@font-face {
+  font-family: 'maaxregular';
+  src: url('../fonts/maax.woff') format('woff');
+}
 
 $body-bg: #e42312;
 $body-color: #f7f7f7;
 
 $font-size-base: 1.2rem;
 
-$font-family-sans-serif: 'Poppins', sans-serif;
-$font-family-base:       $font-family-sans-serif !default;
+$font-family-sans-serif: 'maaxregular', sans-serif;
+$font-family-base:       $font-family-sans-serif;
 
 $enable-rounded: false;
+
+svg {
+  fill: #fafbfc;
+  max-height: 150px;
+}
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";

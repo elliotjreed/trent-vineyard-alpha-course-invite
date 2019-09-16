@@ -34,7 +34,7 @@ module.exports = {
               plugins: function () {
                 return [
                   require('autoprefixer')
-                ];
+                ]
               }
             }
           },
@@ -42,6 +42,12 @@ module.exports = {
             loader: 'sass-loader',
             options: { sourceMap: true }
           }
+        ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader'
         ]
       }
     ]
