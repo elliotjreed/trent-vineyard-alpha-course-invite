@@ -1,7 +1,9 @@
 const path = require('path')
+const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -78,6 +80,25 @@ module.exports = {
         removeScriptTypeAttributes: true,
         collapseWhitespace: true
       }
+    }),
+    new CopyPlugin([
+      { from: "./static", to: "./" }
+    ]),
+    new WebpackPwaManifest({
+      background_color: "#e42312",
+      crossorigin: "anonymous",
+      description: "Send an invite to Trent Vineyard's Alpha Course.",
+      icons: [
+        {
+          sizes: [96, 128, 150, 180, 192, 256, 384, 512],
+          src: path.resolve("src/images/logo.png")
+        }
+      ],
+      inject: true,
+      ios: true,
+      name: "Trent Vineyard Alpha Course Invite",
+      short_name: "Alpha",
+      theme_color: "#e42312"
     }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,

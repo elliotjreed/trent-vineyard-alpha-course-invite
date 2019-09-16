@@ -20,6 +20,10 @@ svg {
   max-height: 150px;
 }
 
+small, p {
+  color: #fdfeff;
+}
+
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";

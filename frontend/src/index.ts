@@ -2,7 +2,7 @@ import './scss/styles.scss'
 import 'whatwg-fetch'
 
 const form = document.getElementById('invite') as HTMLFormElement;
-form.addEventListener("submit", async function(event) {
+form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const successArea = document.getElementById('success_area');
@@ -30,3 +30,9 @@ form.addEventListener("submit", async function(event) {
         })
         .catch(error => console.log(error));
 });
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', (): void => {
+        navigator.serviceWorker.register('/service-worker.js');
+    });
+}
