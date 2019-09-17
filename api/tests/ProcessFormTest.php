@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ElliotJReed\Tests;
 
+use ElliotJReed\Exception\EmailRequired;
 use ElliotJReed\Exception\FirstLineOfAddressRequired;
 use ElliotJReed\Exception\GuestNameRequired;
 use ElliotJReed\Exception\InviterNameRequired;
@@ -32,6 +33,7 @@ final class ProcessFormTest extends TestCase
                 town VARCHAR(191) NOT NULL,
                 county VARCHAR(191) NOT NULL DEFAULT '',
                 postcode VARCHAR(11) NOT NULL,
+                email VARCHAR(255) NOT NULL,
                 user_agent VARCHAR(191) NULL
             )
         ");
@@ -46,7 +48,8 @@ final class ProcessFormTest extends TestCase
             'address_two' => 'Invitation Gardens',
             'town' => 'Inviteville',
             'county' => 'Inviteshire',
-            'postcode' => 'IN1 1VI'
+            'postcode' => 'IN1 1VI',
+            'email' => 'email@example.com'
         ]);
 
         $query = $this->pdo->query('SELECT * FROM invitations')->fetch();
@@ -71,7 +74,8 @@ final class ProcessFormTest extends TestCase
             'address_two' => '',
             'town' => 'Inviteville',
             'county' => '',
-            'postcode' => 'IN1 1VI'
+            'postcode' => 'IN1 1VI',
+            'email' => 'email@example.com'
         ]);
 
         $query = $this->pdo->query('SELECT * FROM invitations')->fetch();
@@ -98,7 +102,8 @@ final class ProcessFormTest extends TestCase
             'address_two' => 'Invitation Gardens',
             'town' => 'Inviteville',
             'county' => 'Inviteshire',
-            'postcode' => 'IN1 1VI'
+            'postcode' => 'IN1 1VI',
+            'email' => 'email@example.com'
         ]);
     }
 
@@ -113,7 +118,8 @@ final class ProcessFormTest extends TestCase
             'address_two' => 'Invitation Gardens',
             'town' => 'Inviteville',
             'county' => 'Inviteshire',
-            'postcode' => 'IN1 1VI'
+            'postcode' => 'IN1 1VI',
+            'email' => 'email@example.com'
         ]);
     }
 
@@ -128,7 +134,8 @@ final class ProcessFormTest extends TestCase
             'address_two' => 'Invitation Gardens',
             'town' => 'Inviteville',
             'county' => 'Inviteshire',
-            'postcode' => 'IN1 1VI'
+            'postcode' => 'IN1 1VI',
+            'email' => 'email@example.com'
         ]);
     }
 
@@ -143,7 +150,8 @@ final class ProcessFormTest extends TestCase
             'address_two' => 'Invitation Gardens',
             'town' => '',
             'county' => 'Inviteshire',
-            'postcode' => 'IN1 1VI'
+            'postcode' => 'IN1 1VI',
+            'email' => 'email@example.com'
         ]);
     }
 
@@ -158,7 +166,24 @@ final class ProcessFormTest extends TestCase
             'address_two' => 'Invitation Gardens',
             'town' => 'Inviteville',
             'county' => 'Inviteshire',
-            'postcode' => ''
+            'postcode' => '',
+            'email' => 'email@example.com'
+        ]);
+    }
+
+    public function testItThrowsExceptionOnEmptyEmail(): void
+    {
+        $this->expectException(EmailRequired::class);
+
+        (new ProcessForm($this->pdo))->process([
+            'guest_name' => 'Mrs Guest',
+            'inviter_name' => 'Mr Inviter',
+            'address_one' => '1 Invite Lane',
+            'address_two' => 'Invitation Gardens',
+            'town' => 'Inviteville',
+            'county' => 'Inviteshire',
+            'postcode' => 'IN1 1VI',
+            'email' => ''
         ]);
     }
 }

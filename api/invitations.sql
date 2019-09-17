@@ -7,5 +7,6 @@ CREATE TABLE invitations (
     town VARCHAR(191) NOT NULL,
     county VARCHAR(191) NOT NULL DEFAULT '',
     postcode VARCHAR(11) NOT NULL,
+    email VARCHAR(255) NOT NULL,
     user_agent VARCHAR(191) NULL
 );

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ElliotJReed;
 
+use ElliotJReed\Exception\EmailRequired;
 use ElliotJReed\Exception\FirstLineOfAddressRequired;
 use ElliotJReed\Exception\GuestNameRequired;
 use ElliotJReed\Exception\InviterNameRequired;
@@ -24,8 +25,8 @@ final class ProcessForm
         $this->ensureRequiredDataIsPresent($formData);
 
         $query = $this->pdo->prepare('INSERT INTO invitations
-          (guest_name, inviter_name, address_one, address_two, town, county, postcode, user_agent)
-          VALUES (:guest_name, :inviter_name, :address_one, :address_two, :town, :county, :postcode, :user_agent)
+          (guest_name, inviter_name, address_one, address_two, town, county, postcode, email, user_agent)
+          VALUES (:guest_name, :inviter_name, :address_one, :address_two, :town, :county, :postcode, :email, :user_agent)
         ');
 
         return $query->execute([
@@ -36,6 +37,7 @@ final class ProcessForm
             'town' => $formData['town'],
             'county' => $formData['county'] ?? '',
             'postcode' => $formData['postcode'],
+            'email' => $formData['email'],
             'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null
         ]);
     }
@@ -60,6 +62,10 @@ final class ProcessForm
 
         if (empty($formData['postcode'])) {
             throw new PostcodeRequired();
+        }
+
+        if (empty($formData['email'])) {
+            throw new EmailRequired();
         }
     }
 }

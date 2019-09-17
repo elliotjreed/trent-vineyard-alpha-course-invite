@@ -5,7 +5,7 @@ use ElliotJReed\Exception\Form;
 use ElliotJReed\ProcessForm;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    \header("Location: https://trentvineyard.elliotjreed.com");
+    \header("Location: about:blank");
     exit();
 }
 
@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$db = new PDO('sqlite:' . __DIR__ . '/../invitations.sqlite3', '', '', [
-  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+$db = new \PDO('sqlite:' . __DIR__ . '/../invitations.sqlite3', '', '', [
+  \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
 ]);
 
 try {
