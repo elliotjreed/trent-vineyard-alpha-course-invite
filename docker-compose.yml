@@ -39,7 +39,7 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:trentvineyard.elliotjreed.com"
+      - "traefik.frontend.rule=Host:invite.trentv.org"
       - "traefik.protocol=h2c"
       - "traefik.port=84"
 
