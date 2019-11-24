@@ -72,7 +72,7 @@ yarn build
 
 ## Deployment
 
-Deployment is via Ansible and Docker.
+Deployment is via Docker and Docker Compose.
 
 ## Built With
 
