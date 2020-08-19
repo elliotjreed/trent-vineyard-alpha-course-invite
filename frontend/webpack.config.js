@@ -81,9 +81,7 @@ module.exports = {
         collapseWhitespace: true
       }
     }),
-    new CopyPlugin([
-      { from: "./static", to: "./" }
-    ]),
+    new CopyPlugin(new CopyPlugin({ patterns: [{ from: "./static", to: "./" }] })),
     new WebpackPwaManifest({
       background_color: "#e42312",
       crossorigin: "anonymous",
